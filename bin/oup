@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd ~/workspace/oucxweb
+_JAVA_OPTIONS="-Xms256M -Xmx384M" play $*

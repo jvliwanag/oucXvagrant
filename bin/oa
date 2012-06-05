@@ -1,0 +1,8 @@
+#!/bin/bash
+
+OPENACD_ROOT=/vagrant/OpenACD
+ERL=erl
+
+NAME=openacd
+
+erl -name "$NAME" -s openacd -pa "$OPENACD_ROOT/ebin" -pa "$OPENACD_ROOT/deps/*/ebin" $*

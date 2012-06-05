@@ -1,0 +1,9 @@
+[submodule "OpenACD"]
+	path = OpenACD
+	url = git@github.com:dhubler/OpenACD.git
+[submodule "oucXopenacdWeb"]
+	path = oucXopenacdWeb
+	url = https://github.com/ezuce/oucXopenacdWeb.git
+[submodule "sipxecs"]
+	path = sipxecs
+	url = https://github.com/dhubler/sipxecs.git
