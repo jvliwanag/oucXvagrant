@@ -80,6 +80,14 @@ exec { 'get_play_framework':
   require => Package['wget', 'unzip']
 }
 
+file { '/opt/play-2.0.1':
+  ensure => 'directory',
+  owner => 'vagrant',
+  group => 'vagrant',
+  recurse => 'true',
+  require => Exec['get_play_framework'],
+}
+
 # Utils
 
 package {'wget': ensure => installed, }
@@ -88,7 +96,13 @@ package {'unzip': ensure => installed, }
 # Home
 
 file { '/home/vagrant/.bashrc':
-  owner => "vagrant",
-  group => "vagrant",
-  source => "/home/vagrant/conf/.bashrc",
+  owner => 'vagrant',
+  group => 'vagrant',
+  source => '/home/vagrant/conf/.bashrc',
+}
+
+file { '/home/vagrant/workspace':
+  ensure => 'directory',
+  owner => 'vagrant',
+  group => 'vagrant',
 }
