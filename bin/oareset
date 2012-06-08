@@ -1,0 +1,159 @@
+#!/usr/bin/env ruby
+
+require 'digest/md5'
+require 'mongo'
+
+realm = 'liwanag.me'
+
+def hashpwd(username, password)
+	realm = 'liwanag.me'
+	Digest::MD5.hexdigest("#{username}:#{realm}:#{password}")
+end
+
+con = Mongo::Connection.new 
+con.drop_database('imdb')
+db = con.db('imdb')
+
+col = db["entity"]
+
+N = 5
+skills_per_group = 3
+queues_per_group = 3
+
+N.times do |i|
+	col.insert({
+		:_id => "cl#{i}",
+		:ident => "cl#{i}",
+		:name => "Client #{i}",
+		:type => "openacdclient"
+	})
+end
+
+N.times do |i|
+	skills_per_group.times do |j|
+		k = i*10 + j
+		col.insert({
+			:_id => "sk#{k}",
+			:atom => "sk#{k}",
+			:dscr => "Skill #{k} Group #{i}",
+			:grpnm => "sklg#{i}"
+		})
+	end
+end
+
+
+N.times do |i|
+	t = i*10
+
+	col.insert({
+		:_id => "qg#{i}",
+		:name => "qg#{i}",
+		:prfl => [],
+		:skl => ["sk#{t}"],
+		:type => "openacdqueuegroup"
+	})
+
+	queues_per_group.times do |j| 
+		k = t + j
+		col.insert({
+			:_id => "q#{k}",
+			:name => "queue#{k}",
+
+			:prfl => [],
+			:wht => j,
+			:skl => [],	
+			:rcps => [],
+			:qgrp => "qg#{i}",
+			:type => "openacdqueue"
+		})
+	end
+end
+
+N.times do |i|
+	t = i*10
+	t1 = t + 1
+	t2 = t + 2
+
+	col.insert({
+		:_id => "ag#{i}",
+		:name => "ag#{i}",
+		:skl => [],
+		:qs => [],
+		:type => "openacdagentgroup"
+	})
+
+	col.insert({
+		:_id => "a#{t}",
+		:name => "a#{t}",
+		:pntk => hashpwd("a#{t}", "a#{t}"),
+		:rlm => realm,
+		:aggrp => "ag#{i}",
+		:cnt => "#{1000 + t}",
+		:scrty => "ADMIN",
+		:fnm => "admin #{t}",
+		:lnm => "admin #{t}",
+		:skl => [],
+		:clns => [],
+		:type => "openacdagent"
+	})
+
+	col.insert({
+		:_id => "a#{t1}",
+		:name => "a#{t1}",
+		:pntk => hashpwd("a#{t1}", "a#{t1}"),
+		:rlm => realm,
+		:aggrp => "ag#{i}",
+		:cnt => "#{1000 + t1}",
+		:scrty => "AGENT",
+		:fnm => "agent #{t1}",
+		:lnm => "agent #{t1}",
+		:skl => ["_all"],
+		:clns => [],
+		:type => "openacdagent"
+	})
+
+	col.insert({
+		:_id => "a#{t2}",
+		:name => "a#{t2}",
+		:pntk => hashpwd("a#{t2}", "a#{t2}"),
+		:rlm => realm,
+		:aggrp => "ag#{i}",
+		:cnt => "#{1000 + t2}",
+		:scrty => "SUPERVISOR",
+		:fnm => "sup #{t2}",
+		:lnm => "sup #{t2}",
+		:skl => [],
+		:clns => [],
+		:type => "openacdagent"
+	})
+end
+
+col.insert({
+	
+})
+
+col.insert({
+	:_id => "FreeswitchMediaCommand-1",
+	:nd => "freeswitch@127.0.0.1",
+	:active => true,
+	#:dlst => "{ignore_early_media=true}sofia/internal/$1;sipx-noroute=VoiceMail;sipx-userforward=false",
+	:dlst => "{ignore_early_media=true}user/$1",
+	:type => "freeswitchmediacommand"
+})
+
+# {
+# 	"_id" : "FreeswitchMediaCommand-1",
+# 	"nd" : "freeswitch@127.0.0.1",
+# 	"active" : true,
+# 	"dlst" : "{ignore_early_media=true}sofia/chikka.ph/$1;sipx-noroute=VoiceMail;sipx-userforward=false",
+# 	"uuid" : "4b65e0ef-088b-40b8-a384-336ded49bd37",
+
+# 	"type" : "freeswitchmediacommand"
+# }
+
+# {
+# 	"_id" : "OpenAcdAgentConfigCommand-1",
+# 	"lstenbl" : true,
+# 	"uuid" : "02d2a322-f622-469a-9325-da2173517501",
+# 	"type" : "openacdagentconfigcommand"
+# }
