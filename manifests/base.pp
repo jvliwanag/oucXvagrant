@@ -86,6 +86,8 @@ file { '/opt/play-2.0.1':
 
 package {'wget': ensure => installed, }
 package {'unzip': ensure => installed, }
+package {'mongo': ensure => installed, provider => 'gem', }
+package {'bson_ext': ensure => installed, provider => 'gem', }
 
 # Home
 
