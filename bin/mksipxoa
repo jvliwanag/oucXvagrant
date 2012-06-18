@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SIPXOPENACD_DIR="$HOME/workspace/sipxecs/sipXopenacd"
+
+cd "$SIPXOPENACD_DIR"
+ERL_LIBS="$ERL_LIBS":~/erl_libs "$SIPXOPENACD_DIR"/rebar compile
