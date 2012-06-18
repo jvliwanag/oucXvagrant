@@ -6,8 +6,9 @@ require 'mongo'
 realm = 'liwanag.me'
 
 def hashpwd(username, password)
-	realm = 'liwanag.me'
-	Digest::MD5.hexdigest("#{username}:#{realm}:#{password}")
+	#realm = 'liwanag.me'
+	#Digest::MD5.hexdigest("#{username}:#{realm}:#{password}")
+	password
 end
 
 con = Mongo::Connection.new 
@@ -129,7 +130,9 @@ N.times do |i|
 end
 
 col.insert({
-	
+	:_id => "OpenAcdAgentConfigCommand",
+	:lstenbl => true,
+	:type => "openacdagentconfigcommand"
 })
 
 col.insert({
@@ -141,19 +144,19 @@ col.insert({
 	:type => "freeswitchmediacommand"
 })
 
-# {
-# 	"_id" : "FreeswitchMediaCommand-1",
-# 	"nd" : "freeswitch@127.0.0.1",
-# 	"active" : true,
-# 	"dlst" : "{ignore_early_media=true}sofia/chikka.ph/$1;sipx-noroute=VoiceMail;sipx-userforward=false",
-# 	"uuid" : "4b65e0ef-088b-40b8-a384-336ded49bd37",
+col.insert({
+	:_id => "WebConfigCommand",
+	:enbl => true,
+	:prt => 9999,
+	:ssl => false,
+	:type => "openacdwebmgtconfigcommand"
+})
 
-# 	"type" : "freeswitchmediacommand"
-# }
-
-# {
-# 	"_id" : "OpenAcdAgentConfigCommand-1",
-# 	"lstenbl" : true,
-# 	"uuid" : "02d2a322-f622-469a-9325-da2173517501",
-# 	"type" : "openacdagentconfigcommand"
-# }
+col.insert({
+	:_id => "AgentWebConfigCommand",
+	:enbl => true,
+	:prt => 5050,
+	:sslenbl => false,
+	:sslprt => 5051,
+	:type => "openacdagentwebconfigcommand"
+})
