@@ -32,22 +32,20 @@ yumrepo { 'sipXecs-testing':
   gpgcheck => 0,
 }
 
-$sipx_build_deps = ['make', 'automake', 'libtool', 'git']
-package { $sipx_build_deps: ensure => "installed" }
+$sipx_build_deps = ['make', 'automake', 'libtool', 'git', 'bind', 'bind-utils',
+'boost', 'boost-devel', 'cfengine', 'chkconfig', 'cppunit-devel', 'dejavu-serif-fonts', 'dhcp',
+'fontconfig', 'freeswitch', 'httpd', 'mod_ssl', 'mongodb', 'mongodb-server',
+'net-snmp', 'net-snmp-libs', 'net-snmp-sysvinit', 'net-snmp-utils',
+'ntp', 'openssl', 'openssl-devel', 'patch', 'pcre', 'pcre-devel', 'postgresql-odbc', 'postgresql-server',
+'rpm', 'rpm-libs', 'ruby', 'ruby-dbi', 'rubygem-daemons', 'rubygems', 'ruby-libs', 'ruby-postgres',
+'sec', 'sendmail', 'sendmail-cf', 'shadow-utils', 'sipx-openfire', 'stunnel', 'tftp', 'tftp-server', 'unixODBC',
+'unixODBC-devel', 'vsftpd', 'which', 'xerces-c', 'xerces-c-devel']
+
+package { $sipx_build_deps: ensure => "installed", require => Yumrepo['sipXecs-testing'] }
 
 # freeswitch
 
-package { 'freeswitch':
-  ensure => installed,
-  require => Yumrepo['sipXecs-testing'],
-}
-
 # mongodb
-
-package { 'mongodb-server':
-  ensure => installed,
-  require => Yumrepo['sipXecs-testing'],
-}
 
 service { 'mongod':
 	ensure => 'running',
@@ -57,10 +55,6 @@ service { 'mongod':
 # OpenACD
 
 # Apache httpd
-
-package { 'httpd':
-  ensure => installed,
-}
 
 service { 'httpd':
   ensure => 'running',
