@@ -49,7 +49,13 @@ package { $sipx_build_deps: ensure => "installed", require => Yumrepo['sipXecs-t
 
 service { 'mongod':
 	ensure => 'running',
-	require => Package['mongodb-server'],
+	require => [Package['mongodb-server'], File['/etc/mongod.conf']],
+  start => '/usr/bin/mongod -f /etc/mongod.conf',
+}
+
+file { '/etc/mongod.conf':
+  source => "$conf_dir/mongod.conf",
+  require => Package['mongodb-server'],
 }
 
 # OpenACD
