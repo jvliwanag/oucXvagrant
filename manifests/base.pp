@@ -64,7 +64,17 @@ file { '/etc/mongod.conf':
 
 service { 'httpd':
   ensure => 'running',
+  require => [Package['httpd'], File['/etc/httpd/conf.d/ouc-vhost.conf']],
+}
+
+file { '/etc/httpd/conf.d':
+  ensure => 'directory',
   require => Package['httpd'],
+}
+
+file { '/etc/httpd/conf.d/ouc-vhost.conf':
+  source => "$conf_dir/ouc-vhost.conf",
+  require => File['/etc/httpd/conf.d'],
 }
 
 # oucXopenACDWeb
