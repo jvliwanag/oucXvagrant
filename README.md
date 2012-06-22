@@ -35,6 +35,7 @@ oup - Runs oucXvagrant play
 
 
 Gotchas:
+
 [1] Vagrant 1.0.3 fails in creating a host-only network for the Fedora Core 16. See [here](https://github.com/monvillalon/vagrant/commit/dc9830350a0f2be3bb7a4b4e9fcefaed66c6a26a) for workaround.
 
 [2] Error when starting vagrant:
