@@ -37,18 +37,12 @@ oup - Runs oucXvagrant play
 Gotchas
 -------
 
-1. Vagrant 1.0.3 fails in creating a host-only network for the Fedora Core 16. See [here](https://github.com/monvillalon/vagrant/commit/dc9830350a0f2be3bb7a4b4e9fcefaed66c6a26a) for workaround.
-`The following SSH command responded with a non-zero exit status.
-        Vagrant assumes that this means the command failed!
-        /sbin/ifup p7p1 2> /dev/null"`
+1. Vagrant 1.0.3 fails in creating a host-only network for the Fedora Core 16. 
 
-if you have installed ruby gems:
-      `/lib/vagrant/guest/fedora.rb`
-      
-else if you installed the vagrant binary:
-    `/Applications/Vagrant/embedded/gems/gems/vagrant-1.0.3/lib/vagrant/guest/fedora.rb`
-    
-find:
-    `44: vm.channel.sudo("/sbin/ifup p7p#{interface} 2> /dev/null" )`
-change for:
-    `44: vm.channel.sudo("/sbin/ifup p7p#{interface} 2> /dev/null" , :error_check => false )`
+        The following SSH command responded with a non-zero exit status.
+
+        Vagrant assumes that this means the command failed!
+
+        /sbin/ifup p7p1 2> /dev/null"
+
+See [here](https://github.com/monvillalon/vagrant/commit/dc9830350a0f2be3bb7a4b4e9fcefaed66c6a26a) for workaround.
