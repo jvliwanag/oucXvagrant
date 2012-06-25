@@ -34,7 +34,7 @@ yumrepo { 'sipXecs-testing':
 
 $sipx_build_deps = ['make', 'automake', 'libtool', 'git', 'bind', 'bind-utils',
 'boost', 'boost-devel', 'cfengine', 'chkconfig', 'cppunit-devel', 'dejavu-serif-fonts', 'dhcp',
-'fontconfig', 'freeswitch', 'httpd', 'mod_ssl', 'mongodb', 'mongodb-server',
+'fontconfig', 'httpd', 'mod_ssl', 'mongodb', 'mongodb-server',
 'net-snmp', 'net-snmp-libs', 'net-snmp-sysvinit', 'net-snmp-utils',
 'ntp', 'openssl', 'openssl-devel', 'patch', 'pcre', 'pcre-devel', 'postgresql-odbc', 'postgresql-server',
 'rpm', 'rpm-libs', 'ruby', 'ruby-dbi', 'rubygem-daemons', 'rubygems', 'ruby-libs', 'ruby-postgres',
@@ -44,6 +44,11 @@ $sipx_build_deps = ['make', 'automake', 'libtool', 'git', 'bind', 'bind-utils',
 package { $sipx_build_deps: ensure => "installed", require => Yumrepo['sipXecs-testing'] }
 
 # freeswitch
+
+package { 'freeswitch': ensure => "installed", }
+file { '/opt/freeswitch/conf/vars.xml':
+  source => "$conf_dir/freeswitch/vars.xml",
+}
 
 # mongodb
 
@@ -104,6 +109,8 @@ package {'wget': ensure => installed, }
 package {'unzip': ensure => installed, }
 package {'mongo': ensure => installed, provider => 'gem', }
 package {'bson_ext': ensure => installed, provider => 'gem', }
+
+package {'ack': ensure => installed, }
 
 # Home
 
