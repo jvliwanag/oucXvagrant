@@ -12,8 +12,8 @@ Vagrant::Config.run do |config|
   config.vm.host_name = "oucxdev"
   config.vm.network :hostonly, "10.24.7.86"
 
-  config.vm.share_folder "bin", "/home/vagrant/bin", "bin", :create => true
-  config.vm.share_folder "conf", "/home/vagrant/conf", "conf", :create => true
+  config.vm.share_folder "bin", "/home/vagrant/bin", "bin", :create => true, :nfs => true
+  config.vm.share_folder "conf", "/home/vagrant/conf", "conf", :create => true, :nfs => true
   
   config.vm.share_folder "openacd", "/home/vagrant/workspace/openacd", "OpenACD", :create => true, :nfs => true
   config.vm.share_folder "sipxecs", "/home/vagrant/workspace/sipxecs", "sipxecs", :create => true, :nfs => true
