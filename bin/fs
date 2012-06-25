@@ -1,8 +1,18 @@
 #!/bin/bash
 
+FWCONF=/home/vagrant/conf/freeswitch
+FWLOG=/home/vagrant/fwrun/log
+FWRUN=/home/vagrant/fwrun
+FWDB=/home/vagrant/db
+
+mkdir -p "$FWLOG"
+mkdir -p "$FWRUN"
+mkdir -p "$FWDB"
+
 pgrep freeswitch &> /dev/null
+
 if [ "$?" != "0" ]; then
-	sudo /opt/freeswitch/bin/freeswitch -ncwait 
+	/opt/freeswitch/bin/freeswitch -ncwait -conf "$FWCONF" -run "$FWRUN" -log "$FWLOG" -db "$FWDB"
 fi
 
 exec /opt/freeswitch/bin/fs_cli

@@ -46,9 +46,6 @@ package { $sipx_build_deps: ensure => "installed", require => Yumrepo['sipXecs-t
 # freeswitch
 
 package { 'freeswitch': ensure => "installed", }
-file { '/opt/freeswitch/conf/vars.xml':
-  source => "$conf_dir/freeswitch/vars.xml",
-}
 
 # mongodb
 
@@ -111,6 +108,7 @@ package {'mongo': ensure => installed, provider => 'gem', }
 package {'bson_ext': ensure => installed, provider => 'gem', }
 
 package {'ack': ensure => installed, }
+package {'vim-enhanced': ensure => installed, }
 
 # Home
 
