@@ -1,0 +1,8 @@
+#!/bin/bash
+
+pgrep freeswitch &> /dev/null
+if [ "$?" != "0" ]; then
+	sudo /opt/freeswitch/bin/freeswitch -ncwait 
+fi
+
+exec /opt/freeswitch/bin/fs_cli
