@@ -7,4 +7,4 @@ fi
 
 # User specific aliases and functions
 
-export PATH="~/bin:/opt/play-2.0.1:$PATH"
+export PATH="~/bin:/opt/play-2.0.1:/opt/freeswitch/bin:$PATH"
