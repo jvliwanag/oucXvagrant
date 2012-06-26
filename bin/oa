@@ -1,6 +1,7 @@
 #!/bin/bash
 
 OPENACD_ROOT=~/workspace/openacd
+SIPXOA_ROOT=~/workspace/sipxecs/sipXopenacd
 RUNDIR=~/oarun
 PLUGINDIR="$RUNDIR"/plugin.d
 DBDIR="$RUNDIR"/db
@@ -15,7 +16,6 @@ COOKIE=oucxdevcookie
 
 mkdir -p "$RUNDIR"
 mkdir -p "$DBDIR"
-mkdir -p "$PLUGINDIR"
 mkdir -p "$LOGDIR"
 
 export OPENACD_RUN_DIR="$RUNDIR"
@@ -30,6 +30,14 @@ if [ ! -f "$KEY" ]; then
 	fi
 fi
 
+if [ ! -d "$PLUGINDIR" ]; then
+	mkdir -p "$PLUGINDIR"
+	ln -s "$SIPXOA_ROOT" "$PLUGINDIR/sipxplugin"
+	ln -s "$SIPXOA_ROOT/ebin/sipxplugin.app" "$PLUGINDIR/sipxplugin.app"
+
+	ln -s "$SIPXOA_ROOT/deps/erlmongo" "$PLUGINDIR/erlmongo"
+	ln -s "$SIPXOA_ROOT/deps/erlmongo/ebin/erlmongo.app" "$PLUGINDIR/erlmongo.app"	
+fi
 
 if [ ! -f "$SYSCONFIG" ]; then
 	mkdir -p `dirname $SYSCONFIG`
