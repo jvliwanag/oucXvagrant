@@ -1,6 +1,15 @@
 #!/bin/bash
 
 SIPXOPENACD_DIR="$HOME/workspace/sipxecs/sipXopenacd"
+HOMEERLLIB="$HOME/erl_libs"
+
+if [ ! -d "$HOMEERLLIB" ]; then
+	mkdir "$HOMEERLLIB"
+
+	# Add to path for compilation
+	ln -s ~/workspace/openacd "$HOMEERLLIB"/OpenACD
+fi
 
 cd "$SIPXOPENACD_DIR"
+"$SIPXOPENACD_DIR"/rebar get-deps
 ERL_LIBS="$ERL_LIBS":~/erl_libs "$SIPXOPENACD_DIR"/rebar compile
