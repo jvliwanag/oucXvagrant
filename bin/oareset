@@ -138,7 +138,7 @@ col.insert({
 
 col.insert({
 	:_id => "FreeswitchMediaCommand-1",
-	:nd => "freeswitch@127.0.0.1",
+	:nd => "freeswitch@oucxdev.ezuce.com",
 	:active => true,
 	#:dlst => "{ignore_early_media=true}sofia/internal/$1;sipx-noroute=VoiceMail;sipx-userforward=false",
 	:dlst => "{ignore_early_media=true}user/$1",
