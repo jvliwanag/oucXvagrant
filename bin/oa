@@ -45,10 +45,12 @@ if [ ! -f "$SYSCONFIG" ]; then
 	CONFIGNODENAME=`erl -eval "io:format(\"~s\",[node()]),halt(1)" -name $NAME -noshell`
 	cat > "$SYSCONFIG" <<EOF
 [{'OpenACD', [
-	{nodes, ['$CONFIGNODENAME']},
-	{console_loglevel, info},
-	{logfiles, [{"$LOGDIR/openacd.log", debug}]},
-	{plugin_dir, "$PLUGINDIR"}
+	{nodes, ['$CONFIGNODENAME']}
+	, {console_loglevel, info}
+	, {logfiles, [{"$LOGDIR/openacd.log", debug}]}
+	, {plugin_dir, "$PLUGINDIR"}
+	, {agent_auth_storage, spx_agent_auth}
+	, {call_queue_config_storage, spx_call_queue_config}
 ]},
 {sasl, [
 	{errlog_type, error} % disable SASL progress reports
