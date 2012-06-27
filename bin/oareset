@@ -148,7 +148,7 @@ col.insert({
 col.insert({
 	:_id => "WebConfigCommand",
 	:enbl => true,
-	:prt => 9090,
+	:prt => 9999,
 	:ssl => false,
 	:type => "openacdwebmgtconfigcommand"
 })
