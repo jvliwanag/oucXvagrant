@@ -6,22 +6,25 @@ file { '/etc/selinux/config': source => "$conf_dir/selinux", }
 service { 'iptables': ensure => 'stopped', }
 
 # Erlang
+# Workaround to get Erlang R15B for FC16
 
-# yumrepo { 'erlang-solutions':
-#   name => 'erlang-solutions',
-#   baseurl => 'http://binaries.erlang-solutions.com/rpm/fedora/$releasever/$basearch',
-#   gpgcheck => 1,
-#   gpgkey => 'http://binaries.erlang-solutions.com/debian/erlang_solutions.asc',
-#   enabled => 1,
-# }
+yumrepo { 'erlang-solutions':
+  name => 'erlang-solutions',
+  baseurl => 'http://binaries.erlang-solutions.com/rpm/fedora/$releasever/$basearch',
+  gpgcheck => 1,
+  gpgkey => 'http://binaries.erlang-solutions.com/debian/erlang_solutions.asc',
+  enabled => 1,
+}
 
-# package { 'esl-erlang':
-#   ensure => installed,
-#   require => Yumrepo['erlang-solutions'],
-# }
-
-package {'erlang':
+package {'esl-erlang':
 	ensure => installed,
+  require => Exec['remove erlang-r14b'],
+}
+
+exec { 'remove erlang-r14b':
+  path => ['/bin', '/usr/bin'],
+  command => 'rpm -qa | grep "^erlang" | xargs rpm -e --nodeps',
+  onlyif => 'rpm -q erlang',
 }
 
 # sipXecs
