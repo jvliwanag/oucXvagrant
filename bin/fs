@@ -13,8 +13,9 @@ pgrep freeswitch &> /dev/null
 
 if [ "$?" != "0" ]; then
 	/opt/freeswitch/bin/freeswitch -ncwait -conf "$FWCONF" -run "$FWRUN" -log "$FWLOG" -db "$FWDB"
+	
+	echo "Waiting 3 seconds..."
+	sleep 3
 fi
 
-echo "Waiting 3 seconds..."
-sleep 3
 exec /opt/freeswitch/bin/fs_cli
