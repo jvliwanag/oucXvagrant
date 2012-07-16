@@ -35,6 +35,9 @@
       <group name="default">
 	<users>
 	  <X-PRE-PROCESS cmd="include" data="default/*.xml"/>
+    <include>
+</include>
+
 	</users>
       </group>
 
