@@ -63,4 +63,4 @@ export ERL_LIBS="$ERL_LIBS:$PLUGINDIR"
 cd "$OPENACD_ROOT"
 exec erl -name "$NAME" -pa "$OPENACD_ROOT/ebin" "$OPENACD_ROOT"/deps/**/ebin "$OPENACD_ROOT"/include_apps/**/ebin \
 	-mnesia dir \""$DBDIR"\" -config "$SYSCONFIG" -s openacd \
-	-setcookie "$COOKIE" $*
+	-setcookie "$COOKIE" -s reloader $*
