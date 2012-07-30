@@ -65,6 +65,14 @@ N.times do |i|
 			:wht => j,
 			:skl => [],	
 			:rcps => [],
+			# :rcps => [{
+			# 	:actn => {:action => "voicemail"},
+			# 	:cndt => [{
+			# 		:cndt => "ticks",
+			# 		:rln => "=",
+			# 		:vlu => 3
+			# 	}]
+			# }],
 			:qgrp => "qg#{i}",
 			:type => "openacdqueue"
 		})
@@ -76,6 +84,10 @@ N.times do |i|
 	t1 = t + 1
 	t2 = t + 2
 
+	u = "#{1000 + t}"
+	u1 = "#{1000 + t1}"
+	u2 = "#{1000 + t2}"
+
 	col.insert({
 		:_id => "ag#{i}",
 		:name => "ag#{i}",
@@ -86,8 +98,8 @@ N.times do |i|
 
 	col.insert({
 		:_id => "a#{t}",
-		:name => "a#{t}",
-		:pntk => hashpwd("a#{t}", "a#{t}"),
+		:name => u,
+		:pntk => hashpwd(u, u),
 		:rlm => realm,
 		:aggrp => "ag#{i}",
 		:cnt => "#{1000 + t}",
@@ -100,12 +112,12 @@ N.times do |i|
 	})
 
 	col.insert({
-		:_id => "a#{t1}",
-		:name => "a#{t1}",
-		:pntk => hashpwd("a#{t1}", "a#{t1}"),
+		:_id => u1,
+		:name => u1,
+		:pntk => hashpwd(u1, u1),
 		:rlm => realm,
 		:aggrp => "ag#{i}",
-		:cnt => "#{1000 + t1}",
+		:cnt => u1,
 		:scrty => "AGENT",
 		:fnm => "agent #{t1}",
 		:lnm => "agent #{t1}",
@@ -115,18 +127,27 @@ N.times do |i|
 	})
 
 	col.insert({
-		:_id => "a#{t2}",
-		:name => "a#{t2}",
-		:pntk => hashpwd("a#{t2}", "a#{t2}"),
+		:_id => u2,
+		:name => u2,
+		:pntk => hashpwd(u2, u2),
 		:rlm => realm,
 		:aggrp => "ag#{i}",
-		:cnt => "#{1000 + t2}",
+		:cnt => u2,
 		:scrty => "SUPERVISOR",
 		:fnm => "sup #{t2}",
 		:lnm => "sup #{t2}",
 		:skl => [],
 		:clns => [],
 		:type => "openacdagent"
+	})
+end
+
+N.times do |i|
+	col.insert({
+		:_id => "RelOpt#{i}",
+		:lbl => "Release #{i}",
+		:bias => 1,
+		:type => "openacdreleasecode"
 	})
 end
 

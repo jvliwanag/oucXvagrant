@@ -10,7 +10,7 @@
 <extension name="OpenACD agent logoff">
 	<condition field="${sip_authorized}" expression="^true$"/>
 	<condition field="destination_number" expression="^\*89$">
-		<action application="erlang_sendmsg" data="agent_dialplan_listener openacd@oucxdev.ezuce.com agent_logoff ${sip_auth_username}"/>
+		<action application="erlang_sendmsg" data="agent_dialplan_listener openacd@oucxdev.ezuce.com agent_logoff ${username}"/>
 		<action application="hangup"/>
 	</condition>
 </extension>
@@ -18,7 +18,7 @@
 <extension name="OpenACD agent available">
 	<condition field="${sip_authorized}" expression="^true$"/>
 	<condition field="destination_number" expression="^\*86$">
-		<action application="erlang_sendmsg" data="agent_dialplan_listener openacd@oucxdev.ezuce.com agent_available ${sip_auth_username}"/>
+		<action application="erlang_sendmsg" data="agent_dialplan_listener openacd@oucxdev.ezuce.com agent_available ${username}"/>
 		<action application="hangup"/>
 	</condition>
 </extension>
@@ -26,7 +26,7 @@
 <extension name="OpenACD agent released">
 	<condition field="${sip_authorized}" expression="^true$"/>
 	<condition field="destination_number" expression="^\*87$">
-		<action application="erlang_sendmsg" data="agent_dialplan_listener openacd@oucxdev.ezuce.com agent_release ${sip_auth_username}"/>
+		<action application="erlang_sendmsg" data="agent_dialplan_listener openacd@oucxdev.ezuce.com agent_release ${username}"/>
 		<action application="hangup"/>
 	</condition>
 </extension>
