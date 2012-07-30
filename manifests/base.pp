@@ -126,3 +126,10 @@ file { '/home/vagrant/workspace':
   owner => 'vagrant',
   group => 'vagrant',
 }
+
+file { '/home/vagrant/openacd':
+  ensure => 'link',
+  target => '/home/vagrant/workspace/sipxecs/OpenACD',
+  owner => 'vagrant',
+  group => 'vagrant',
+}
