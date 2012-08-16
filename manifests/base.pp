@@ -16,15 +16,23 @@ yumrepo { 'erlang-solutions':
   enabled => 1,
 }
 
-package {'esl-erlang':
-	ensure => installed,
-  require => Exec['remove erlang-r14b'],
-}
+# package {'esl-erlang':
+# 	ensure => installed,
+#   require => [Exec['remove erlang-r14b'], Yumrepo['erlang-solutions']],
+# }
 
-exec { 'remove erlang-r14b':
-  path => ['/bin', '/usr/bin'],
-  command => 'rpm -qa | grep "^erlang" | xargs rpm -e --nodeps',
-  onlyif => 'rpm -q erlang',
+# exec { 'remove erlang-r14b':
+#   path => ['/bin', '/usr/bin'],
+#   command => 'rpm -qa | grep "^erlang" | xargs rpm -e --nodeps',
+#   onlyif => 'rpm -q erlang',
+# }
+
+exec { 'kerl-r15b01':
+  path => ["/usr/bin", "/bin"],
+  command => "/home/vagrant/bin/erlr15b01install",
+  user => "vagrant",
+  creates => '/home/vagrant/.kerl/installs/r15b01',
+  environment => "HOME=/home/vagrant",
 }
 
 # sipXecs
@@ -48,7 +56,7 @@ package { $sipx_build_deps: ensure => "installed", require => Yumrepo['sipXecs-t
 
 # freeswitch
 
-package { 'freeswitch': ensure => "installed", }
+package { 'freeswitch': ensure => "installed", require => Yumrepo['sipXecs-testing'] }
 
 # mongodb
 
@@ -97,9 +105,9 @@ exec { 'get_play_framework':
 
 file { '/opt/play-2.0.1':
   ensure => 'directory',
-  owner => 'vagrant',
-  group => 'vagrant',
-  recurse => 'true',
+  # owner => 'vagrant',
+  # group => 'vagrant',
+  # recurse => 'true',
   require => Exec['get_play_framework'],
 }
 

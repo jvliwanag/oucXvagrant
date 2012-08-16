@@ -10,3 +10,14 @@ fi
 alias vi=vim
 
 export PATH="~/bin:/opt/play-2.0.1:/opt/freeswitch/bin:$PATH"
+
+# Kerl R15B01 Activate
+KERL_INSTALL="/home/vagrant/.kerl/installs/r15b01"
+
+KERL_ACTIVATE="$KERL_INSTALL/activate"
+if [ -f "$KERL_ACTIVATE" ]; then
+	. "$KERL_ACTIVATE"
+	export PATH
+	export AGNER_BIN
+	export REBAR_PLT_DIR
+fi
