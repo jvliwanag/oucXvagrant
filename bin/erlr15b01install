@@ -1,0 +1,16 @@
+#!/bin/bash
+KERL=/home/vagrant/bin/kerl
+VER=R15B01
+BUILD=r15b01
+INSTALL_DIR="/home/vagrant/.kerl/installs/$BUILD"
+
+
+# Installs erlang build deps
+sudo yum-builddep -y erlang
+
+# Build
+"$KERL" build "$VER" "$BUILD"
+
+# Install
+mkdir -p "$INSTALL_DIR"
+"$KERL" install "$BUILD" "$INSTALL_DIR"

@@ -27,6 +27,7 @@ N.times do |i|
 		:_id => "cl#{i}",
 		:ident => "cl#{i}",
 		:name => "Client #{i}",
+		:autoendwrp => 5,
 		:type => "openacdclient"
 	})
 end
