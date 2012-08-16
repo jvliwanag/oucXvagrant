@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sudo rm -Rf /var/lib/mongo/*
+
+sudo mkdir -p /var/log/mongo
+sudo mkdir -p /var/lib/mongo
+
+sudo /usr/bin/mongod -f /etc/mongod.conf
+echo "Waiting 5 seconds while mongo starts"
+sleep 5
+mongo --eval 'rs.initiate()'
+echo "Waiting another 5 seconds while replica set is set-up"
+sleep 5
+echo "Calling oareset"
+~/bin/oareset
