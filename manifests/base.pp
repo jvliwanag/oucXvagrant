@@ -113,7 +113,8 @@ package {'mongo': ensure => installed, provider => 'gem', }
 package {'bson_ext': ensure => installed, provider => 'gem', }
 
 package {'ack': ensure => installed, }
-package {'vim-enhanced': ensure => installed, }
+package {'vim-minimal': ensure => latest, }
+package {'vim-enhanced': ensure => installed, require => Package['vim-minimal'], }
 
 # Home
 
