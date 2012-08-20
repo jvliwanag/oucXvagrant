@@ -1,0 +1,4 @@
+#!/bin/bash
+
+vagrant ssh -c 'sudo /etc/init.d/vboxadd setup'
+vagrant reload
