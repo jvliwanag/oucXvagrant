@@ -3,7 +3,7 @@ $conf_dir = '/home/vagrant/conf'
 
 # SELinux
 file { '/etc/selinux/config': source => "$conf_dir/selinux", }
-service { 'iptables': ensure => 'stopped', }
+service { 'iptables': ensure => 'stopped', hasstatus => true, }
 
 # Erlang
 # Workaround to get Erlang R15B for FC16
