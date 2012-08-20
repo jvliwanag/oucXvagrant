@@ -33,6 +33,7 @@ exec { 'kerl-r15b01':
   user => "vagrant",
   creates => '/home/vagrant/.kerl/installs/r15b01',
   environment => "HOME=/home/vagrant",
+  timeout => 0,
 }
 
 # sipXecs
