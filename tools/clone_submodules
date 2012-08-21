@@ -1,5 +1,10 @@
 #!/bin/bash
 
+BASEDIR="$( cd "$( dirname "$0" )" && pwd)"
+GITROOT="$BASEDIR/.."
+
+cd "$GITROOT"
+
 git submodule init
 git submodule update
 cd sipxecs
