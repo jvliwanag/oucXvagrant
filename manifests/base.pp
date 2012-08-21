@@ -106,6 +106,12 @@ file { '/opt/play-2.0.1':
   require => Exec['get_play_framework'],
 }
 
+# Workaround for File['/opt/play-2.0.1'] owner/group due to performance issues with recursive file management in Puppet 2.6
+exec { 'chown /opt/play-2.0.1':
+  command => "/bin/chown -R vagrant:vagrant /opt/play-2.0.1",
+  require => File['/opt/play-2.0.1'],
+}
+
 # Utils
 
 package {'wget': ensure => installed, }
