@@ -9,7 +9,7 @@ Vagrant::Config.run do |config|
     vm.memory_size = 1024
   end
 
-  config.vm.host_name = "oucxdev"
+  config.vm.host_name = "oucxdev.ezuce.com"
   config.vm.network :hostonly, "10.24.7.86"
 
   config.vm.share_folder "bin", "/home/vagrant/bin", "bin", :create => true, :nfs => true
