@@ -27,11 +27,11 @@ yumrepo { 'erlang-solutions':
 #   onlyif => 'rpm -q erlang',
 # }
 
-exec { 'kerl-r15b01':
+exec { 'kerl-r15b02':
   path => ["/usr/bin", "/bin"],
-  command => "/home/vagrant/bin/erlr15b01install",
+  command => "/home/vagrant/bin/erlr15b02install",
   user => "vagrant",
-  creates => '/home/vagrant/.kerl/installs/r15b01',
+  creates => '/home/vagrant/.kerl/installs/r15b02',
   environment => "HOME=/home/vagrant",
   timeout => 0,
 }
