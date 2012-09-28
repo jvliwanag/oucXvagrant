@@ -6,15 +6,17 @@ file { '/etc/selinux/config': source => "$conf_dir/selinux", }
 service { 'iptables': ensure => 'stopped', hasstatus => true, }
 
 # Erlang
+package {'erlang': ensure => installed, }
+
 # Workaround to get Erlang R15B for FC16
 
-yumrepo { 'erlang-solutions':
-  name => 'erlang-solutions',
-  baseurl => 'http://binaries.erlang-solutions.com/rpm/fedora/$releasever/$basearch',
-  gpgcheck => 1,
-  gpgkey => 'http://binaries.erlang-solutions.com/debian/erlang_solutions.asc',
-  enabled => 1,
-}
+# yumrepo { 'erlang-solutions':
+#   name => 'erlang-solutions',
+#   baseurl => 'http://binaries.erlang-solutions.com/rpm/fedora/$releasever/$basearch',
+#   gpgcheck => 1,
+#   gpgkey => 'http://binaries.erlang-solutions.com/debian/erlang_solutions.asc',
+#   enabled => 1,
+# }
 
 # package {'esl-erlang':
 # 	ensure => installed,
@@ -27,14 +29,14 @@ yumrepo { 'erlang-solutions':
 #   onlyif => 'rpm -q erlang',
 # }
 
-exec { 'kerl-r15b02':
-  path => ["/usr/bin", "/bin"],
-  command => "/home/vagrant/bin/erlr15b02install",
-  user => "vagrant",
-  creates => '/home/vagrant/.kerl/installs/r15b02',
-  environment => "HOME=/home/vagrant",
-  timeout => 0,
-}
+# exec { 'kerl-r15b02':
+#   path => ["/usr/bin", "/bin"],
+#   command => "/home/vagrant/bin/erlr15b02install",
+#   user => "vagrant",
+#   creates => '/home/vagrant/.kerl/installs/r15b02',
+#   environment => "HOME=/home/vagrant",
+#   timeout => 0,
+# }
 
 # sipXecs
 
