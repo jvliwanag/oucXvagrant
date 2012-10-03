@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# input is dist .zip file
+
+if rpm -qa | grep -q unzip; then
+  echo "Unzip installed"
+else
+  yum install unzip
+fi
+
+INSTPATH="/opt/oucxweb/"
+CONFDPATH="/etc/httpd/conf.d/"
+CONFFILE="oucxweb.conf"
+
+if [ -d "$INSTPATH" ]; then
+  rm -rf "$INSTPATH"
+fi
+
+unzip -j $1 -d"$INSTPATH"
+mkdir "$INSTPATH"lib
+mv "$INSTPATH"*.jar "$INSTPATH"lib/
+chmod +x "$INSTPATH"start
+"$INSTPATH"start

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+sudo alternatives --set java /usr/lib/jvm/jre-1.6.0-openjdk/bin/java
+sudo alternatives --set javac /usr/lib/jvm/java-1.6.0-openjdk/bin/javac
+
+cd ~/workspace/oucxweb
+
+rm -rf dist/
+
+_JAVA_OPTIONS="-Xms256M -Xmx384M" play dist
+
+sudo alternatives --set java /usr/lib/jvm/jre-1.7.0-openjdk/bin/java
+sudo alternatives --set javac /usr/lib/jvm/java-1.7.0-openjdk/bin/javac
