@@ -9,7 +9,7 @@ fi
 
 alias vi=vim
 
-export PATH="~/bin:/opt/play-2.0.1:/opt/freeswitch/bin:$PATH"
+export PATH="~/bin:/opt/play-2.0.3:/opt/freeswitch/bin:$PATH"
 
 # Kerl R15B02 Activate
 KERL_INSTALL="/home/vagrant/.kerl/installs/r15b02"

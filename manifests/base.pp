@@ -94,13 +94,13 @@ package { 'java-1.7.0-openjdk-devel': ensure => 'installed', }
 # play
 
 exec { 'get_play_framework':
-  command => '/usr/bin/wget http://download.playframework.org/releases/play-2.0.1.zip -O /tmp/play-2.0.1.zip && /usr/bin/unzip -d /opt /tmp/play-2.0.1.zip',
-  creates => '/opt/play-2.0.1',
+  command => '/usr/bin/wget http://download.playframework.org/releases/play-2.0.3.zip -O /tmp/play-2.0.3.zip && /usr/bin/unzip -d /opt /tmp/play-2.0.3.zip',
+  creates => '/opt/play-2.0.3',
   timeout => 0,
   require => Package['wget', 'unzip']
 }
 
-file { '/opt/play-2.0.1':
+file { '/opt/play-2.0.3':
   ensure => 'directory',
   # owner => 'vagrant',
   # group => 'vagrant',
@@ -108,10 +108,10 @@ file { '/opt/play-2.0.1':
   require => Exec['get_play_framework'],
 }
 
-# Workaround for File['/opt/play-2.0.1'] owner/group due to performance issues with recursive file management in Puppet 2.6
-exec { 'chown /opt/play-2.0.1':
-  command => "/bin/chown -R vagrant:vagrant /opt/play-2.0.1",
-  require => File['/opt/play-2.0.1'],
+# Workaround for File['/opt/play-2.0.3'] owner/group due to performance issues with recursive file management in Puppet 2.6
+exec { 'chown /opt/play-2.0.3':
+  command => "/bin/chown -R vagrant:vagrant /opt/play-2.0.3",
+  require => File['/opt/play-2.0.3'],
 }
 
 # Utils
