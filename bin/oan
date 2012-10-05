@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CUSTOM_SCRIPTCONFIG="$HOME/conf/oacd.cfg"
+CUSTOM_SYSCONFIG="$HOME/conf/openacd.config"
+OACD_DIR="$HOME/workspace/oacd"
+SCRIPTCONFIG="$OACD_DIR/conf/oacd.cfg"
+SYSCONFIG="$OACD_DIR/conf/sys.config"
+
+cp "$CUSTOM_SCRIPTCONFIG" "$SCRIPTCONFIG"
+cp "$CUSTOM_SYSCONFIG" "$SYSCONFIG"
+$OACD_DIR/oacd start

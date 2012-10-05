@@ -1,0 +1,16 @@
+#!/bin/bash
+
+BASEDIR="$( cd "$( dirname "$0" )" && pwd)"
+GITROOT="$BASEDIR/.."
+OACDGIT="https://github.com/dannaaduna/oacd_umbrella.git"
+OACDDIR="$GITROOT/oacd"
+
+cd "$GITROOT"
+
+git clone --recursive "$OACDGIT" "$OACDDIR"
+cd "$OACDDIR"
+./oacd add-plugin oacd_freeswitch https://github.com/dannaaduna/oacd_freeswitch.git
+./oacd add-plugin sipxplugin https://github.com/dannaaduna/sipxplugin.git
+./oacd add-plugin oacd_web git@bitbucket.org:jvliwanag/oacd_web.git
+./oacd add-plugin oacd_tcp git@bitbucket.org:jvliwanag/oacd_tcp.git
+./oacd add-plugin oacd_ouc https://github.com/ezuce/oucXopenacdWeb.git -b oacd_plugin

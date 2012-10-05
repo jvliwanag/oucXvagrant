@@ -1,0 +1,4 @@
+#!/bin/bash
+
+OACD_DIR="$HOME/workspace/oacd"
+make -C "$OACD_DIR"

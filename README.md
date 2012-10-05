@@ -19,9 +19,9 @@ Set-up
 > vagrant box add fedora-16 http://TODO/
 5. Check-out the project:
 > git clone git@github.com:jvliwanag/oucXvagrant.git oucx
-6. Set-up the git submodules.
+6. Set-up the git repos.
 > cd oucx
-> git submodule init && git submodule update
+> ./tools/clone_oacd
 7. Start vagrant
 > vagrant up # can take several minutes to start and set-up
 8. Dive into ssh
@@ -29,7 +29,8 @@ Set-up
 
 Shortcuts
 ---------
-oa - Starts OpenACD
+mkoacd - Builds OpenACD and plugins
+oan - Starts OpenACD
 oareset - Resets MongoDB with known data
 oup - Runs oucXvagrant play
 
