@@ -29,10 +29,11 @@ Set-up
 
 Shortcuts
 ---------
-mkoacd - Builds OpenACD and plugins
-oan - Starts OpenACD
-oareset - Resets MongoDB with known data
-oup - Runs oucXvagrant play
+mongoreset - Resets MongoDB with known data<br>
+mkoacd - Builds OpenACD and plugins<br>
+fs - starts FreeSWITCH<br>
+oan - Starts OpenACD<br>
+oup - Runs oucXvagrant play<br>
 
 
 Gotchas
