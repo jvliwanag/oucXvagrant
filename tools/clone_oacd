@@ -9,6 +9,7 @@ cd "$GITROOT"
 
 git clone --recursive "$OACDGIT" "$OACDDIR"
 cd "$OACDDIR"
+make checkout
 ./oacd add-plugin oacd_freeswitch https://github.com/dannaaduna/oacd_freeswitch.git
 ./oacd add-plugin sipxplugin https://github.com/dannaaduna/sipxplugin.git
 ./oacd add-plugin oacd_web git@bitbucket.org:jvliwanag/oacd_web.git
